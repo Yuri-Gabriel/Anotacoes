@@ -1,0 +1,39 @@
+body {
+    display: flex;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+#main-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; 
+}
+
+aside {
+    border: 1px solid red;
+    width: 400px;
+    height: 100vh; 
+}
+
+.getFile {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+header {
+    border: 1px solid red;
+    padding: 10px;
+}
+
+main {
+    flex-grow: 1; 
+    overflow-y: auto;
+    padding: 20px;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+}
