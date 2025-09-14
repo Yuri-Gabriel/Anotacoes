@@ -11,6 +11,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }).then(data => {
             const nav = buildNav(data);
             document.getElementById("meu_nav").appendChild(nav)
+
+            addDirsEvent();
+
             document.querySelectorAll('.getFile').forEach(el => {
                 el.addEventListener('click', () => {
                     const path = el.getAttribute("data-path");
@@ -41,6 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const keys = Object.keys(data.dirs);
             keys.forEach((key) => {
                 const li = document.createElement("li");
+                li.setAttribute("class", "dir");
                 li.textContent = key;
                 const subNav = buildNav(
                     data.dirs[key],
@@ -55,6 +59,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
     carregarDiretorios();
 
+    
+
+    function addDirsEvent() {
+        const liDirs = document.getElementsByClassName('dir');
+        console.log('Elementos encontrados:', liDirs.length);
+        
+        for(let i = 0; i < liDirs.length; i++) {
+            const el = liDirs[i];
+            el.addEventListener("click", () => {
+                const is_open = el.nextElementSibling.classList.contains("dir_open");
+                
+                if(is_open) {
+                    el.nextElementSibling.classList.remove("dir_open");
+                    el.style.removeProperty('--before-rotation', '90deg');
+                } else {
+                    el.nextElementSibling.classList.add("dir_open");
+                    el.style.setProperty('--before-rotation', '180deg');
+                }
+            });
+        }
+    }
+
     document.getElementById("btnDownload").addEventListener("click", () => {
         if (iframe && iframe.contentWindow) {
             iframe.contentWindow.print();
@@ -63,33 +89,3 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     })
 });
-
-/*
-renderer.code = function (code) {
-    let codeText = code.text;
-    if (typeof codeText !== 'string') {
-        codeText = String(codeText);
-    }
-
-    const language = code.lang ? code.lang.toLowerCase() : 'plaintext';
-    
-    // Agora a verificação é robusta para a linguagem
-    if (language === 'mermaid') {
-        return `<div class="mermaid">${codeText}</div>`;
-    }
-    
-    // Para todas as outras linguagens, use o destaque de sintaxe
-    let highlightedCode;
-    try {
-        if (hljs.getLanguage(language)) {
-            highlightedCode = hljs.highlight(codeText, { language }).value;
-        } else {
-            highlightedCode = hljs.highlightAuto(codeText).value;
-        }
-    } catch (err) {
-        highlightedCode = code;
-    }
-
-    return `<pre><code class="hljs language-${language}">${highlightedCode}</code></pre>`;
-};
-*/

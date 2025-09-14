@@ -70,7 +70,7 @@ Fazendo uma analogia, a taxa de sinalização poderia representar o limite que u
 A taxa de transferência e a taxa de sinalização estão inter-relacionadas, então, pela tecnologia de codificação utilizada.
 
 $$
-    T_{tr} = T_{s} \cdot \log{_{2}(n)}
+	T_{tr} = T_{s} . \log_{2}(n)
 $$
 
 - $T_{tr}$ = Taxa de transferendia (bps)
@@ -259,7 +259,7 @@ Ele mostrou que **qualquer sinal, por mais estranho que pareça, pode ser repres
 #### Transformada de Fourier
 
 $$
-	f(t) = \frac{1}{\pi} \int_0^{\infty} (A(w) cos(w) + B(w)sen(w)) dw
+	f(t) = \frac{1}{\pi} \int_0^{\infin} (A(w) cos(w) + B(w)sen(w)) dw
 $$
 
 Isso é a **Transformada de Fourier** → pega um sinal no tempo e decompõe em suas frequências.
@@ -269,7 +269,7 @@ Isso é a **Transformada de Fourier** → pega um sinal no tempo e decompõe em 
 Uma onda quadrada não é "natural", mas Fourier mostrou que ela pode ser formada somando infinitas senoides:
 
 $$
-	f(t) = \frac{a}{2} + \sum_{n = 1}^{\infty} \frac{1}{n} sen(n x)
+	f(t) = \frac{a}{2} + \sum_{n = 1}^{\infin} \frac{1}{n} sen(n x)
 $$
 
 -   A primeira senoide (n=1) é a **fundamental**.
@@ -299,15 +299,15 @@ O Decibel é a relação logarítmica entre as potências de saída e de entrada
 No entanto, devido aos típicos valores fracionários desta unidade, na prática é mais utilizada a sub-unidade decibel (dB), que igual a valor em Bells (resultado do logaritmo decimal da divisão $\frac{P_e}{P_s}$ ) multiplicado por 10. E assim obtemos a formula:
 
 $$
-	Ganho/Atenuacao = 10 \log{ \frac{ P_e }{ P_s }} 
+	Ganho/Atenuação = 10 \log{ \frac{ P_e }{ P_s }} 
 $$
 
 > Lembre-se, a potência é medida em Watts $W$
 
 E se for:
-- $ > 1 $ -> Amplificação
-- $ = 1 $ -> Resposta plana (Quase nunca)
-- $ > 1 $ -> Atenuação (Na maioria das vezes nas redes)
+- $> 1$ -> Amplificação
+- $= 1$ -> Resposta plana (Quase nunca)
+- $> 1$ -> Atenuação (Na maioria das vezes nas redes)
 
 ### Relação de potências ($dBm$)
 
