@@ -259,7 +259,7 @@ Ele mostrou que **qualquer sinal, por mais estranho que pareça, pode ser repres
 #### Transformada de Fourier
 
 $$
-	f(t) = \frac{1}{\pi} \int_0^{\infin} (A(w) cos(w) + B(w)sen(w)) dw
+	f(t) = \frac{1}{\pi} \int_0^{\infty} (A(w) cos(w) + B(w)sen(w)) dw
 $$
 
 Isso é a **Transformada de Fourier** → pega um sinal no tempo e decompõe em suas frequências.
@@ -269,7 +269,7 @@ Isso é a **Transformada de Fourier** → pega um sinal no tempo e decompõe em 
 Uma onda quadrada não é "natural", mas Fourier mostrou que ela pode ser formada somando infinitas senoides:
 
 $$
-	f(t) = \frac{a}{2} + \sum_{n = 1}^{\infin} \frac{1}{n} sen(n x)
+	f(t) = \frac{a}{2} + \sum_{n = 1}^{\infty} \frac{1}{n} sen(n x)
 $$
 
 -   A primeira senoide (n=1) é a **fundamental**.
@@ -398,30 +398,38 @@ Consiste em ligações ponto a ponto entre pares de dispositivos que, no seu con
 #### Mista
 
 - Junção das das anteriores
------------------
 
 ## Modelos em camadas
 
 Conjunto de protocolos, procedimentos, equipamentos e componentes com caracteristicas similares que são agrupados em camadas especificas que prestam serviços entre elas.
 
-- Superior solicita inferior
+Embora o modelo em camadas realize a comunicação entre o transmissor e o receptor com base na troca de informações entre as diversas camadas de cada um dos equipamentos, existe uma "comunicação virtual" entre a camada $n$ do transmissor e a camada $n$ do receptor. Isto significa que, quando uma determinada camada $n$ prepara uma mensagem para encaminhamento para a camada inferior, ela considera que as informações estão sendo encaminhadas diretamente para a camada $n$ do outro lado. As regras de conversação existentes em uma determinada camada $n$ são conhecidas como protocolo de camada $n$.
 
-- sistema aberto: pode conecta com componentes de outros fabricantes/fornecedores; Seguem um conjunto de normas;
-	- Vantagem: Mais barato
-	- Desvantagens: 
-- sistema fechado: se conecta apenas com os componentes do mesmo fabricante.
-	- Vantagem: Confiailidade
-	- Desvantagens: Mais caro, baixa flexibilidade 
+![Modelo OSI](https://drive.google.com/thumbnail?id=1lzkiRCKqyHetZi2h9PCtYJdkhJbfDF4j&sz=w400)
+
+Para que as diversas camadas do receptor sejam capazes de interpretar a informação enviada pelo transmissor, geralmente é necessário o acréscimo de informações de controle às mensagens transmitidas das camadas superiores para as inferiores. Além disto, pode ocorrer a sub-divisão de mensagens. No modelo OSI, as camadas 7, 6, 5 e 4 modificam a mensagem recebida para transmissão, porém têm capacidade de tratar com mensagens de qualquer tamanho. No entanto, a camada 4 possui uma limitação de tamanho para tratamento de mensagens. Desta forma, em alguns casos é obrigatória a sub-divisão da mensagem em unidades menores, ao passá-la para camadas inferiores.
+
+#### Princípios para Definição do Número de Camadas
+
+1. Cada camada deve desempenhar uma função bem definida;
+2. A função de cada camada deve ser definida buscando, na medida do possível, a compatibilidade com as tecnologias já existentes no mercado;
+3. As fronteiras entre as camadas devem ser escolhidas de forma a minimizar o fluxo de informações através das interfaces
+
+> - Sistema aberto: pode conecta com componentes de outros fabricantes/fornecedores; Seguem um conjunto de normas;
+	>	- Vantagem: Mais barato
+> - Sistema fechado: se conecta apenas com os componentes do mesmo fabricante.
+	>	- Vantagem: Confiabilidade
+	>	- Desvantagens: Mais caro, baixa flexibilidade 
 
 
-#### Caracteristicas
+#### Características principais
 
 1. No emissor, a informação cresce a medida que desce as camadas, ao contrario do que ocorre no receptor que diminui a medida que sobe;
 2. As funções devem ser inequivocas / Cada camada deve fazer apenas o que foi desiguinada a fazer;
 3. 
 4. Se as camadas adjacentes concordarem com mudanças, você pode mudar também;
 
-### Modelo OSI (Open Sistem Interconect)
+### Modelo OSI (Open System Interconect)
 
  **DECORE**
 
@@ -435,46 +443,58 @@ Conjunto de protocolos, procedimentos, equipamentos e componentes com caracteris
 	6. Presentation - Apresentação 
 	7. Application - Aplicação 
 	
-	Para Dormir Nesse Treinamento Será Preciso Apresentação
+> Para Dormir Nesse Treinamento Será Preciso Apresentação: PDNTSPA
 
-#### Pq 7?
+#### Mas porque 7 camadas?
 
-- Evitar equivocos de funções
+Dois motivos principais:
+
+- Evitar equívocos de funções
 - Compatibilidade com os padrões do mercado
 	
 #### Questões de projeto
+
 1. Estabelecimento de Conexões
-	-	Preparação prévia antes da troca de informações;
+	-	Cada um dos processos em operação em uma determinada estação precisa garantir a comunicação com os endereços envolvidos na execução daquele processo. Esta garantia vêm da conexão com os processos destinos, que deve ser estabelecida antes do início de qualquer comunicação.
 2. Encerramento de Conexões
-	- ...
+	- Processo fundamental para liberar recursos e garantir que a comunicação entre dois pontos termine de forma ordenada e segura.
 3. Endereçamento
+	- Garante que os dados enviados de uma origem cheguem ao destino correto. Cada camada do modelo de camadas lida com um tipo diferente de endereço, e a combinação desses endereços permite o roteamento e a entrega precisa das informações.
 	- Pode ser de 3 tipos:
 		- Unicast: Um destinatário específico;
 		- Multicast: Aponta para um grupo de destinatários;
 		- Broadcast: Envia para todos em uma região.
 	- Cada formato, exeto o broadcast, exige um endereçamento específico
 4. Estabelecimento de Canais Lógicos
-	-  Cada canal possui a sua própria tratativa
+	-  Cada canal possui a sua própria tratativa.
+	- Em muitas conexões, às vezes é necessário o estabelecimento de mais de um canal de comunicação. Esta situação ocorre normalmente devido à necessidade de estabelecimento de níveis de prioridade diferentes dentro de uma mesma conexão.
 5. Controle de Erros
-	- Desprezo: Quando o erro é extremamente dificil de ocorrer, não há tanta nescessidade de trata-lo;
-	- Identificação e contagem: O desenvolvedor decide se irá trata-lo a depender da sua ocorrência;
-	- Re-transmissão: Ocorreu um erro, envia novamente; Esconde os erros; Deixa a rede lenta; erro de Timeout;
-	- Correção: Quando o reenvio é inviavel; Só é possivel corrigir o erro quando o mesmo é redundante;
+	- **Desprezo**: Quando o erro é extremamente dificil de ocorrer, não há tanta nescessidade de trata-lo;
+	- **Identificação e contagem**: O desenvolvedor decide se irá trata-lo a depender da sua ocorrência;
+	- **Re-transmissão**: Quando um erro é detectado ou quando uma confirmação não é recebida dentro de um tempo limite (**timeout**), o transmissor envia o pacote de dados novamente. Essa abordagem "esconde" o erro das camadas de aplicação, garantindo que a informação chegue completa e correta ao destino. No entanto, o processo de retransmissão consome tempo e recursos, o que pode **deixar a rede mais lenta** e reduzir a sua eficiência.
+	- **Correção**: É usada para evitar o reenvio de dados. É possível corrigir o erro apenas quando os dados são redundantes, o que significa que o transmissor envia informações extras (bits de paridade) que permitem ao receptor identificar e corrigir bits corrompidos localmente.
 6. Controle de Tamanho
-	- Determinados canais de comunicação estabelecem tamanhos máximos e mínimos em seus protocolos, o que nem sempre é adequado ao tráfego das informações em seu formato bruto; Segmentação / agregação;
+	- Determinados canais de comunicação estabelecem tamanhos máximos e mínimos em seus protocolos, o que nem sempre é adequado ao tráfego das informações em seu formato bruto e por isso a informa é segmentada/fragmentada pelo transmissor e juntada novamente pelo receptor.
 7. Controle de Fluxo
-	- Muitas vezes a performance do transmissor não corresponde à capacidade do receptor de interpretar os dados recebidos; Controle tando de volume quanto de complexidade;
+	- Gerencia tanto o **volume** quanto a **velocidade** dos dados enviados, alinhando a performance do transmissor com a capacidade de processamento do receptor. Dessa forma, é possível evitar a sobrecarga do sistema receptor, garantindo que a comunicação seja eficiente e sem perdas.
 8. Ordenação
-	- Organização dos dados que chegam
+	- Ao enviar informações através de serviços que não garantem a sequência de entrega, o receptor deve ser capaz de identificar a sequência correta e armazenar as partes recebidas fora da ordem para posterior ordenação.
 9. Multiplexação / Demultiplexação
+	- Permitem que múltiplos fluxos de dados compartilhem um mesmo canal de comunicação. É como se você tivesse várias conversas acontecendo ao mesmo tempo em uma única linha telefônica, sem que elas se misturem.
+	- **Multiplexação**: ocorre no lado do transmissor. Ela combina dados de diferentes fontes em um único fluxo, que é então enviado pelo meio de transmissão.
+	- **Demultiplexação**: ocorre no lado do receptor. Ela recebe o único fluxo de dados multiplexado e o divide, entregando cada segmento de dados ao seu destino correto.
 10. Escolha da rota
-	- Escolher uma rota que corresponda a demanda;
+	- Decidir a rota pode envolver fatores como custo, velocidade e que corresponda a demanda. Este trabalho, normalmente realizado em mais de uma camada, é conhecido como roteamento;
 
 #### Camadas
-1. Fisica: Determina as interfaces mecanicas, eletrica e tempos; Unidade de dados: $BIT$;
-2. Enlace: Trata os erros; É muito rapida por ser uma camada baixa;
 
-
+1. **Physical**: Determina as interfaces mecânicas, elétrica e tempos e sua unidade de dados: $BIT$. Ela define:
+	-	Quantos volts devem ser usados para representar o 0 e o 1;
+	-	Quantos micro-segundos dura um bit;
+	-	Se a comunicação é SIMPLEX, HALF-DUPLEX ou FULL-DUPLEX;
+	-	Quantos pinos tem o conector utilizado e qual a função de cada um deles;
+	-	Qual o tipo e quais os limites do cabo a ser utilizado.
+3. **Data Link**: Trata os erros e é muito rápida por ser uma camada baixa. Tem como principal função transformar a linha física real em uma linha que pareça à camada de rede totalmente imune a erros de comunicação.
 
 
 [Protocolo distancia de hamming](https://www.google.com/search?q=distancia+de+hamming&rlz=1C1VDKB_enBR1145BR1145&oq=distancia+de+hamming&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQABiABDIHCAIQABiABDIICAMQABgWGB4yCAgEEAAYFhgeMggIBRAAGBYYHjIICAYQABgWGB4yCAgHEAAYFhgeMggICBAAGBYYHjIICAkQABgWGB7SAQcxOTFqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8&safe=active&ssui=on)
