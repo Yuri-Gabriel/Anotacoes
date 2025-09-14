@@ -1,7 +1,8 @@
-const express = require("express");
-const router = express.Router();
+import express from "express"
 
-const Service = require("./service");
+import Service from "./service.js";
+
+const router = express.Router();
 const service = new Service();
 
 router.get("/getPaths", async (req, res) => {
@@ -13,4 +14,4 @@ router.get("/getFileContent/:fileName", async (req, res) => {
     res.send(await service.getFileContent(file));
 });
 
-module.exports = router;
+export default router;

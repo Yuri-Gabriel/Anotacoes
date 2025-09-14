@@ -1,8 +1,9 @@
-const fs = require('fs').promises;
-const path = require("path");
-const { marked } = require("marked");
-const markedKatex = require("marked-katex-extension");
-const hljs = require("highlight.js");
+import fs from "fs/promises"
+import path from "path";
+import { fileURLToPath } from 'url';
+import { marked } from "marked"
+import markedKatex from "marked-katex-extension";
+import hljs from "highlight.js";
 
 const renderer = new marked.Renderer();
 
@@ -59,6 +60,9 @@ marked.use({
 
 marked.setOptions({ renderer });
 
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const dirPath = path.join(__dirname, 'docs');
 
 async function getFilesRecursively(dirPath) {
@@ -107,4 +111,4 @@ class Service {
     }
 }
 
-module.exports = Service;
+export default Service;
