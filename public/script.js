@@ -16,6 +16,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
             document.querySelectorAll('.getFile').forEach(el => {
                 el.addEventListener('click', () => {
+                    const name = el.textContent.replace('.md', '');
+                    document.title = name;
+
                     const path = el.getAttribute("data-path");
                     iframe.src = `/api/getFileContent/${path}`;
                 });
